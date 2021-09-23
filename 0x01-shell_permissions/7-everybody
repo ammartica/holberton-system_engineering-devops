@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo u+x hello
+su u+x hello
