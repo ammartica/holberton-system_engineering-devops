@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#This script displays files in current dir
+
+ls -lA | awk -F':[0-9]* ' '/:/{print $2}'
