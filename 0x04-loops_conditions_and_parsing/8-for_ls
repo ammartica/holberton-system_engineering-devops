@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # This script displays the content of current dir
 
-for FILE in *
+for i in *
 do
-  echo "$FILE"
+  echo "$i" | cut -d '-' -f2
 done
