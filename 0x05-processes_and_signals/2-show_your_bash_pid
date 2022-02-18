@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # This script displays lines containing bash word
 
-ps axuf | grep "bash"
+ps auxf | grep "bash"
