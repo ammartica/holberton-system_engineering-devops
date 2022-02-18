@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# This script creates a file, displays a message, deletes the file, and terminates itself
+
+echo "$$" > /var/run/myscript.pid
+
+while true;
+do
+    echo "To infinity and beyond"
+    sleep 2
+    trap "echo 'I hate the kill command'; rm /var/run/myscript.pid; exit" SIGTERM
+    trap "rm /var/run/myscript.pid; exit" SIGQUIT
+    trap "echo 'Y U no love me?!'" SIGINT
+done
