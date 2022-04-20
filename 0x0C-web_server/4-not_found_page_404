@@ -3,7 +3,6 @@
 
 new_strings="\\\terror_page 404 /404.html;"
 sudo apt-get update
-sudo apt-get -y install nginx
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 sudo sed -i "24 i $new_strings" /etc/nginx/sites-enabled/default
 sudo service nginx restart
