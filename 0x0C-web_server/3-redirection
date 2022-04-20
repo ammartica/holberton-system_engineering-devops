@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Configure your Nginx server so that /redirect_me is redirecting to another page
 
+new_strings="\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
 sudo apt-get update
-sudo apt-get install nginx -y
-sudo echo "Hello World!" | sudo tee "/var/www/html/index.html"
-sed -i '24 i \\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4i permanent;' /etc/nginx/sites-enabled/default
+sudo apt-get -y install nginx
+echo 'Hello World' | sudo tee /var/www/html/index.nginx-debian.html
+sudo sed -i "24 i $new_strings" /etc/nginx/sites-available/default
 sudo service nginx restart
