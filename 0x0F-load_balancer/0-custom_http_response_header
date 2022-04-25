@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Configures a brand new Ubuntu machine with a custom HTTP header
+
+#variables that hold commands
+REDIRECT_301="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+CUSTOM_404="\\\terror_page 404 /404.html;"
+CUSTOM_H="\\\tadd_header X-Served-By $HOSTNAME;"
+
+#install engine
+sudo apt-get update
+sudo apt-get -y install nginx
+
+#return page with string 'Hello World' when querying NGINX at its root
+echo 'Hello World' | sudo tee /var/www/html/index.nginx-debian.html
+
+#301 redirection
+sudo sed -i "24 i $REDIRECT_301" /etc/nginx/sites-enabled/default
+
+#return 404 page with string 'Ceci n'est pas une page'
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+
+#HTTP 404 error code
+sudo sed -i "24 i $CUSTOM_404" /etc/nginx/sites-enabled/default
+
+#HTTP custom header
+sudo sed -i "27 i $CUSTOM_H" /etc/nginx/sites-enabled/default
+
+#restart the server
+sudo service nginx restart
