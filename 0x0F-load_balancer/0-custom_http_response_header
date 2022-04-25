@@ -20,10 +20,10 @@ sudo sed -i "24 i $REDIRECT_301" /etc/nginx/sites-enabled/default
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 
 #HTTP 404 error code
-sudo sed -i "24 i $CUSTOM_404" /etc/nginx/sites-enabled/default
+sudo sed -i "27 i $CUSTOM_404" /etc/nginx/sites-enabled/default
 
 #HTTP custom header
-sudo sed -i "27 i $CUSTOM_H" /etc/nginx/sites-enabled/default
+sudo sed -i "30 i $CUSTOM_H" /etc/nginx/sites-enabled/default
 
 #restart the server
 sudo service nginx restart
