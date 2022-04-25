@@ -25,4 +25,4 @@ sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
 echo "$CONFIG" | sudo tee /etc/haproxy/haproxy.cfg
 
 # Restart HAproxy
-sudo service restart haproxy
+sudo service haproxy restart
