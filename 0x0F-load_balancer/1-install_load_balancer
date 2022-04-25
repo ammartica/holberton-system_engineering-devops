@@ -15,7 +15,6 @@ backend web-backend
   server 3602-web-01 34.148.193.216:80 check
   server 3602-web-02 184.72.65.241:80 check"
 
-
 # Enable HAproxy to be started by init script
 sudo sed -i "s/ENABLED=0/ENABLED=1/" /etc/default/haproxy
 
@@ -26,4 +25,4 @@ sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
 echo "$CONFIG" | sudo tee /etc/haproxy/haproxy.cfg
 
 # Restart HAproxy
-sudo systemctl restart haproxy
+sudo service restart haproxy
