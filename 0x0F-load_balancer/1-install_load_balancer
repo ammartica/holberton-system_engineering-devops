@@ -5,7 +5,7 @@ sudo apt-get update
 sudo apt-get -y install haproxy
 
 CONFIG=$"frontend webfrontend
-  bind 3.95.195.182:80
+  bind *:80
   mode http
   default_backend web-backend
 
@@ -15,7 +15,7 @@ backend web-backend
   server 3602-web-02 184.72.65.241:80 check"
 
 # Enable HAproxy to be started by init script
-sudo sed -i "s/ENABLED=0/ENABLED=1/" /etc/default/haproxy
+sudo sed -i "$ aENABLED=1/" /etc/default/haproxy
 
 # Copy original config file for emergencies
 sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
