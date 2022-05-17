@@ -6,29 +6,21 @@ import requests
 from sys import argv
 
 
-if __name__ == '__main__':
-    argc = len(argv)
-    if (argc == 2 and argv[1].isdigit()):
+if __name__ == "__main__":
+    emp_id = argv[1]
+    user = requests.get("https://jsonplaceholder.typicode.com/users/{}"
+                        .format(emp_id)).json()
+    todos = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}"
+                         .format(emp_id)).json()
+    name = user.get('name')
+    comp_tasks = []
 
-        REST = 'https://jsonplaceholder.typicode.com/'
-        emp_id = argv[1]
+    for task in todos:
+        if task.get('completed') is True:
+            comp_tasks.append(task.get('title'))
 
-        emp_response = requests.get(REST + 'users/' + emp_id)
+    print("Employee {} is done with tasks({}/{}):"
+          .format(name, len(comp_tasks), len(todos)))
 
-        emp_name = emp_response.json().get("name")
-
-        todo_response = requests.get(REST + 'todos?userId=' + emp_id)
-        tasks = todo_response.json()
-
-        tasks_done = 0
-        task_count = 0
-        task_string = ""
-
-        for task in tasks:
-            if task.get('completed') is True:
-                tasks_done += 1
-                task_string += "\t " + task.get('title') + '\n'
-            task_count += 1
-        print("Employee {} is done with tasks({}/{}):"
-              .format(emp_name, tasks_done, task_count))
-        print(task_string, end="")
+    for task in comp_tasks:
+        print("\t {}".format(task))
