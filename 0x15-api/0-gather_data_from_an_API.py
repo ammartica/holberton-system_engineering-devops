@@ -9,9 +9,9 @@ from sys import argv
 if __name__ == "__main__":
     emp_id = argv[1]
     user = requests.get("https://jsonplaceholder.typicode.com/users/{}"
-                        .format(emp_id)).json()
+                        .format(emp_id, verify=False)).json()
     todos = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}"
-                         .format(emp_id)).json()
+                         .format(emp_id, verify=False)).json()
     name = user.get('name')
     comp_tasks = []
 
