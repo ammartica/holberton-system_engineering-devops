@@ -15,10 +15,10 @@ We just installed Nginx as our web server but we are unable to connect to port 8
 ## Root cause and resolution
 Because we noticed this issue right after we had installed the Nginx web server, we figured Nginx closes port 80 by default. We decided to look into the default files that come with Nginx. and noticed
 this was indeed where the issue was. The default file for enabled sites was listening in on port 8080 instead of port 80. 
-<br />
+<br /> <br />
 To fix this issue, we removed that file and created a symbolic link to the default file for available sites,
 which was identical except that it was listening in on port 80, which was what we wanted.
-<br />
+<br /> <br />
 To confirm our solution worked, we restarted the server to apply the changes and ran the curl command to connect through port 80 and it worked.
 
 ## Corrective and preventative measures:
